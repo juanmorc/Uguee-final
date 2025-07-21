@@ -1,0 +1,9 @@
+# Dependencias del backend
+Django>=5.2.3
+djangorestframework>=3.14.0
+django-cors-headers
+python-decouple
+gunicorn>=21.0.0
+whitenoise>=6.0.0  # Para servir archivos estáticos
+psycopg2-binary>=2.9.0  # Para PostgreSQL en producción
+supabase>=1.0.0

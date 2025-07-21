@@ -1,0 +1,12 @@
+[Unit]
+Description=Gunicorn daemon for UGUEE backend
+After=network.target
+
+[Service]
+User=uguee
+Group=www-data
+WorkingDirectory=/var/www/uguee/backend
+ExecStart=/var/www/uguee/venv/bin/gunicorn --access-logfile - --workers 3 --bind unix:/var/www/uguee/uguee.sock backend.wsgi:application
+
+[Install]
+WantedBy=multi-user.target
