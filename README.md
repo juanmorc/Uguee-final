@@ -15,7 +15,7 @@ Este documento describe los pasos para desplegar la aplicación UGUEE tanto en e
 ### Paso 1: Clonar el repositorio
 
 ```powershell
-git clone <URL_DEL_REPOSITORIO>
+git clone (https://github.com/juanmorc/Uguee-final)
 cd proyecto-uguee
 ```
 
@@ -72,7 +72,7 @@ sudo chown -R $USER:$USER /var/www/uguee
 ### Paso 2: Clonar el repositorio
 
 ```bash
-git clone <URL_DEL_REPOSITORIO> /tmp/uguee
+git clone (https://github.com/juanmorc/Uguee-final) /tmp/uguee
 cp -r /tmp/uguee/Proyecto/backend/* /var/www/uguee/backend/
 cp -r /tmp/uguee/Proyecto/frontend/* /var/www/uguee/frontend/
 ```
