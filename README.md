@@ -106,20 +106,6 @@ Uguee-final/
 
 ---
 
-## Contribuir
-1. Haz un fork del repositorio
-2. Crea una rama para tu feature/fix
-3. Haz tus cambios y abre un Pull Request
-
-## Licencia
-MIT
-
----
-
-**Contacto:** [juanmorc](https://github.com/juanmorc)
-
----
-
 ## 🔍 Solución de Problemas
 
 ### Base de datos
