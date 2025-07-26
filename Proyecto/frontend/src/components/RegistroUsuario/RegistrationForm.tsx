@@ -11,7 +11,8 @@ export function RegistrationForm() {
     const [apellido, setApellido] = useState("");
     const [idEstudiantil, setIdEstudiantil] = useState("");
     const [telefono, setTelefono] = useState("");
-    const [direccion, setDireccion] = useState("");
+    const [calle, setCalle] = useState("");
+    const [numero, setNumero] = useState("");
     const [correo, setCorreo] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [rol, setRol] = useState("Pasajero"); // Valor por defecto
@@ -27,7 +28,7 @@ export function RegistrationForm() {
         setError("");
         setSuccess("");
 
-        if (!nombre || !apellido || !telefono || !direccion || !contrasena) {
+        if (!nombre || !apellido || !telefono || !calle || !contrasena) {
             setError("Por favor, completa todos los campos obligatorios.");
             setIsSubmitting(false);
             return;
@@ -42,7 +43,7 @@ export function RegistrationForm() {
         const data = {
             nombre,
             apellido,
-            direccion,
+            direccion: `${calle} #${numero}`,
             telefono,
             contrasena,
             correo,
@@ -102,10 +103,16 @@ export function RegistrationForm() {
                     onChange={(e) => setTelefono(e.target.value)}
                 />
                 <FormField
-                    label="Dirección"
-                    placeholder="Cll 2C Oeste #82 A12"
-                    value={direccion}
-                    onChange={(e) => setDireccion(e.target.value)}
+                    label="Calle"
+                    placeholder="Cll 2C Oeste"
+                    value={calle}
+                    onChange={(e) => setCalle(e.target.value)}
+                />
+                <FormField
+                    label="Número"
+                    placeholder="123"
+                    value={numero}
+                    onChange={(e) => setNumero(e.target.value)}
                 />
                 <FormField
                     label="Correo institucional "

@@ -44,7 +44,7 @@ class UsuarioSerializer(serializers.ModelSerializer):
         # Asignar valores a los campos del modelo
         validated_data['calle'] = direccion
         validated_data['numero'] = '0'  # Valor por defecto
-        validated_data['celular'] = int(telefono) if telefono and telefono.isdigit() else 0
+        validated_data['celular'] = telefono or ''
         validated_data['codigo'] = id_estudiantil
         validated_data['contraseña'] = contrasena  # Usar el nombre correcto del modelo
         
