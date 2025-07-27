@@ -1,4 +1,4 @@
-import * as React from "react";
+
 import { SearchIcon } from "./SearchIcon";
 
 export function SearchButton() {

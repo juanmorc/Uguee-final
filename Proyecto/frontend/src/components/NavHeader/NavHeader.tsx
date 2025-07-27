@@ -110,6 +110,13 @@ const UserProfile: React.FC<UserProfileProps> = ({driver = false}) => {
                     </button>
                         </>
                     )}
+
+                    <div className="w-full h-[2px] bg-purple-900 opacity-40"/>
+                    <button className="flex items-center rounded-lg w-full p-2 hover:bg-purple-200 transition-colors"
+                            onClick={() => navigate("/institution")}>
+                        Registrar Nueva Institución
+                    </button>
+                    <div className="w-full h-[2px] bg-purple-900 opacity-40"/>
                     <button className="flex items-center justify-center rounded-lg w-full p-2 hover:bg-red-100 transition-colors"
                             onClick={() => navigate("/")}>
                         Cerrar Sesión

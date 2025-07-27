@@ -1,4 +1,4 @@
-import { MapContainer, Marker, Popup, TileLayer, useMap, useMapEvents } from "react-leaflet";
+import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
 import * as React from "react";
 import { cn } from "../../lib/utils.ts";
 import MapUpdater from "./MapUpdater";

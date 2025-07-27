@@ -1,11 +1,8 @@
 "use client";
 import React, { useState } from "react";
 import { FormField } from "./FormField";
-import { SelectField } from "./SelectField";
-import { CheckboxField } from "./CheckboxField";
 import { ActionButtons } from "./ActionButtons";
 import { useNavigate } from "react-router-dom";
-import { ColorField } from "./ColorField";
 import axios from "axios";
 import {DateField} from "./DateField.tsx";
 

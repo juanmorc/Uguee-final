@@ -1,5 +1,4 @@
 "use client";
-import * as React from "react";
 import { MenuIcon } from "./MenuIcon";
 import { SearchIcon } from "./SearchIcon";
 import { BriefcaseIcon } from "./icons/BriefcaseIcon";
@@ -65,21 +64,21 @@ export function SearchBarWithFilters({
     setFilters(prev => ({ ...prev, vehicle: option }));
   };
 
-  const TravelTypeoptions: OptionType[] = [
-    { value: null, label: "Cualquier viaje" },
+  const TravelTypeOptions: OptionType[] = [
+    { value: "", label: "Cualquier viaje" },
     { value: "local", label: "Local" },
     { value: "campus", label: "Campus" },
     { value: "intermunicipal", label: "Intermunicipal" },
   ];
 
   const VehicleOptions: OptionType[] = [
-    { value: null, label: "Cualquier vehículo" },
+    { value: "", label: "Cualquier vehículo" },
     { value: "auto", label: "Auto" },
     { value: "moto", label: "Moto" },
   ];
 
   const TimeOptions: OptionType[] = [
-    { value: null, label: "Cualquier horario" },
+    { value: "", label: "Cualquier horario" },
     { value: "am", label: "A.M" },
     { value: "pm", label: "P.M" },
   ];
@@ -147,7 +146,7 @@ export function SearchBarWithFilters({
           <FilterButton
             icon={<BriefcaseIcon />}
             label="Tipo de Viaje"
-            options={TravelTypeoptions}
+            options={TravelTypeOptions}
             onChange={handleTripTypeChange}
             value={filters.tripType}
           />

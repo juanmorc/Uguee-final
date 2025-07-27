@@ -1,7 +1,7 @@
 import { MapContainer, Marker, Popup, TileLayer } from "react-leaflet";
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect } from "react";
+import type { LeafletEvent } from "leaflet";
 import { cn } from "../../lib/utils";
-import * as L from "leaflet";
 
 interface LocationSelectionMapProps {
   className?: string;
@@ -21,7 +21,9 @@ const LocationSelectionMap: React.FC<LocationSelectionMapProps> = ({
     lng: initialLongitude,
   });
 
-  const popupRef = useRef(null);
+  /*
+  const popupRef = useRef<typeof Marker| null>(null);
+   */
 
   useEffect(() => {
     if (initialLatitude !== 0 && initialLongitude !== 0) {
@@ -29,7 +31,7 @@ const LocationSelectionMap: React.FC<LocationSelectionMapProps> = ({
     }
   }, [initialLatitude, initialLongitude]);
 
-  const handleMarkerDragEnd = (e: any) => {
+  const handleMarkerDragEnd = (e: LeafletEvent) => {
     const { lat, lng } = e.target.getLatLng();
     setPin({ lat, lng });
 
@@ -38,10 +40,6 @@ const LocationSelectionMap: React.FC<LocationSelectionMapProps> = ({
       onLocationChange(lat, lng);
     }
 
-    // Open popup to show coordinates
-    if (popupRef.current) {
-      popupRef.current.openPopup();
-    }
   };
 
   return (
@@ -59,7 +57,6 @@ const LocationSelectionMap: React.FC<LocationSelectionMapProps> = ({
       <Marker
         position={[pin.lat, pin.lng]}
         draggable={true}
-        ref={popupRef}
         eventHandlers={{
           dragend: handleMarkerDragEnd,
         }}

@@ -14,7 +14,7 @@ export const TripItem = ({ trip, onRemove, className }: TripItemProps) => {
         <div className={cn("flex flex-col items-start px-[22px] py-4", className)}>
             {/* Route name */}
             <h3 className="text-2xl font-normal text-[#602CAD] leading-9 mb-1">
-                {trip.route}
+                {trip.departure + " - " + trip.destination}
             </h3>
 
             {/* Star rating */}
@@ -29,10 +29,10 @@ export const TripItem = ({ trip, onRemove, className }: TripItemProps) => {
                 {/* Trip info */}
                 <div className="flex flex-col justify-center">
                     <div className="text-base text-[#2C2C2C] leading-9">
-                        Salida: {trip.departureDay} {trip.departureTime}
+                        Salida: {trip.departureDay}{" "} {String(trip.departureHours).padStart(2, "0")}:{String(trip.departureMinutes).padStart(2, "0")}
                     </div>
                     <div className="text-base text-[#2C2C2C] leading-9">
-                        {trip.vehicleType} -{" "}
+                        {trip.vehicle} -{" "}
                         <span className="underline">{trip.driverName}</span>
                     </div>
                 </div>

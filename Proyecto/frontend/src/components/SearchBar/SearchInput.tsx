@@ -1,5 +1,5 @@
 "use client";
-import * as React from "react";
+
 import { MenuButton } from "./MenuButton";
 import { SearchInputField } from "./SearchInputField";
 import { SearchButton } from "./SearchButton";

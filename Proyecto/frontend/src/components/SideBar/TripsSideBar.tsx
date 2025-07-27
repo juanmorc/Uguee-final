@@ -3,7 +3,6 @@ import type {TripsSidebarProps} from "../../types/trip";
 import { cn } from "../../lib/utils.ts";
 import {SideBarButton} from "./SideBarButton.tsx";
 import {useState } from "react";
-import {AtSign} from "lucide-react";
 
 
 type Props = {

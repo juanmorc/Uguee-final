@@ -20,7 +20,7 @@ export function FilterButton({
   value,
 }: FilterButtonProps) {
   return (
-      <div className={"flex h-max px-1 items-center w-max pl-2 gap-2.5 rounded-full bg-purple-200 hover:bg-purple-300 max-sm:h-6"}>
+      <div className={"flex h-max px-1 items-center w-max pl-2 gap-2.5 rounded-full bg-purple-200 hover:bg-purple-300 max-sm:h-6" + className}>
         {icon}
         <Dropdown
           className={"text-lg font-normal leading-8 max-lg:text-xl max-sm:text-lg max-sm:w-auto max-sm:h-6 max-sm:leading-6"}

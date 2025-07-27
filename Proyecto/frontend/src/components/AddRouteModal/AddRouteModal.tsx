@@ -1,25 +1,16 @@
 import React, { useState } from "react";
 import "./AddRouteModal.css";
 import LocationSelectionMap from "../Map/LocationSelectionMap";
+import type {Trip} from "../../types/trip";
 
 interface AddRouteModalProps {
   isOpen: boolean;
   onClose: () => void;
-  onSubmit?: (formData: RouteFormData) => void;
+  onSubmit?: (formData: Trip) => void;
   onLocationSelecting?: (isSelecting: boolean, mode?: 'start' | 'destination') => void;
   onConfirmLocation?: () => void;
 }
 
-interface RouteFormData {
-  departure: string;
-  destination: string;
-  vehicle: string;
-  hours: string;
-  minutes: string;
-  day: string;
-  departureCoordinates?: { lat: number; lng: number };
-  destinationCoordinates?: { lat: number; lng: number };
-}
 
 const AddRouteModal: React.FC<AddRouteModalProps> = ({
   isOpen,
@@ -28,13 +19,17 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
   onLocationSelecting,
   onConfirmLocation,
 }) => {
-  const [formData, setFormData] = useState<RouteFormData>({
-    departure: "",
+  const [formData, setFormData] = useState<Trip>({
+    id: "",
     destination: "",
+    departure: "",
+    rating: 0,
+    reviewCount: 0,
+    departureDay: "",
+    departureHours: 0,
+    departureMinutes: 0,
     vehicle: "",
-    hours: "",
-    minutes: "",
-    day: "",
+    driverName: "",
   });
 
   const [isSelectingLocation, setIsSelectingLocation] = useState(false);
@@ -63,8 +58,8 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
     }
   }, []);
 
-  const handleInputChange = (field: keyof RouteFormData, value: string) => {
-    setFormData((prev) => ({
+  const handleInputChange = (field: keyof Trip, value: string|number) => {
+    setFormData((prev: Trip) => ({
       ...prev,
       [field]: value,
     }));
@@ -113,7 +108,7 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
 
     const locationText = `Lat: ${tempCoordinates.lat.toFixed(4)}, Lng: ${tempCoordinates.lng.toFixed(4)}`;
 
-    setFormData((prev) => ({
+    setFormData((prev: Trip) => ({
       ...prev,
       [coordinatesField]: tempCoordinates,
       [locationField]: locationText,
@@ -131,14 +126,14 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
   React.useEffect(() => {
     if (onConfirmLocation && isSelectingLocation) {
       // Store the function globally for the FloatingActionButton to access
-      (window as any).confirmLocationSelection = handleConfirmLocation;
+      window.confirmLocationSelection = handleConfirmLocation;
     }
     return () => {
-      if ((window as any).confirmLocationSelection) {
-        delete (window as any).confirmLocationSelection;
+      if (window.confirmLocationSelection) {
+        delete window.confirmLocationSelection;
       }
     };
-  }, [isSelectingLocation, tempCoordinates, selectionMode, onConfirmLocation]);
+  }, [isSelectingLocation, tempCoordinates, selectionMode, onConfirmLocation, handleConfirmLocation]);
 
   const handleCancelLocationSelection = () => {
     setIsSelectingLocation(false);
@@ -381,11 +376,11 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
                   className="time-input"
                   placeholder="HH"
                   maxLength={2}
-                  value={formData.hours}
+                  value={formData.departureHours}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "");
                     if (parseInt(value) <= 23 || value === "") {
-                      handleInputChange("hours", value);
+                      handleInputChange("departureHours", parseInt(value));
                     }
                   }}
                 />
@@ -395,27 +390,27 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
                   className="time-input"
                   placeholder="MM"
                   maxLength={2}
-                  value={formData.minutes}
+                  value={formData.departureMinutes}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "");
                     if (parseInt(value) <= 59 || value === "") {
-                      handleInputChange("minutes", value);
+                      handleInputChange("departureMinutes", parseInt(value));
                     }
                   }}
                 />
                 <div className="vehicle-container">
                 <select
                     className="vehicle-select"
-                    value={formData.day}
-                    onChange={(e) => handleInputChange("day", e.target.value)}
+                    value={formData.departureDay}
+                    onChange={(e) => handleInputChange("departureDay", e.target.value)}
                 >
                   <option value="">Día de viaje</option>
                   <option value="Lunes">Lunes</option>
                   <option value="Martes">Martes</option>
-                  <option value="Miércoles">Miercoles</option>
+                  <option value="Miercoles">Miércoles</option>
                   <option value="Jueves">Jueves</option>
                   <option value="Viernes">Viernes</option>
-                  <option value="Sábado">Sabado</option>
+                  <option value="Sabado">Sábado</option>
                 </select>
                 </div>
               </div>

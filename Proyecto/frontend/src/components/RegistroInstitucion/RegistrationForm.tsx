@@ -1,11 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { FormField } from "./FormField";
-import { ColorInput } from "./ColorInput";
 import { Checkbox } from "./Checkbox";
 import {ColorField} from "./ColorField.tsx";
+import {useNavigate} from "react-router-dom";
 
 export const RegistrationForm: React.FC = () => {
+  const navigate = useNavigate();
   const [nombre, setNombre] = useState("");
   const [id, setId] = useState("");
   const [direccion, setDireccion] = useState("");
@@ -43,6 +44,7 @@ export const RegistrationForm: React.FC = () => {
 
     console.log("Datos enviados:", data);
     try {
+        navigate("/passenger")
       const response = await fetch("http://localhost:8000/instituciones/instituciones/", {
         method: "POST",
         headers: {

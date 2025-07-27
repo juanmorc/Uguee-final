@@ -12,7 +12,6 @@ interface ColorFieldProps {
 
 
 export const ColorField: React.FC<ColorFieldProps> = ({
-                                                      optional = false,
                                                       className = "",
                                                       onChange,
                                                       color = "#aabbcc"

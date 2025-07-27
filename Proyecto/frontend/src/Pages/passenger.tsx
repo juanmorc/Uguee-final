@@ -4,6 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { TripsSideBar } from "../components/SideBar/TripsSideBar.tsx";
 import { HelmetIcon } from "../components/NavHeader/Icons.tsx";
 import PassengerMap from "../components/Map/PassengerMap.tsx";
+import type {Trip} from "../types/trip";
 import { useState } from "react";
 import './passenger.css'
 import * as React from "react";
@@ -12,68 +13,80 @@ import * as React from "react";
 const mockTrips = [
   {
     id: "1",
-    route: "Cámbulos - Mélendez",
+    departure: "Cámbulos",
+    destination: "Mélendez",
     rating: 4.0,
     reviewCount: 5,
     departureDay: "Martes",
-    departureTime: "9:00 am",
-    vehicleType: "Moto" as const,
+    departureHours: 9,
+    departureMinutes: 0,
+    vehicle: "Moto" as const,
     driverName: "Liseth Natalia",
   },
   {
     id: "2",
-    route: "Palmira - Cali",
+    departure: "Palmira",
+    destination: "Cali",
     rating: 3.0,
     reviewCount: 9,
     departureDay: "Miércoles",
-    departureTime: "5:00 am",
-    vehicleType: "Auto" as const,
+    departureHours: 15,
+    departureMinutes: 30,
+    vehicle: "Auto" as const,
     driverName: "Juan Moreno",
   },
   {
     id: "3",
-    route: "Universidad - Centro",
+    departure: "Univalle",
+    destination: "Centro",
     rating: 4.5,
     reviewCount: 12,
     departureDay: "Lunes",
-    departureTime: "7:30 am",
-    vehicleType: "Auto" as const,
+    departureHours: 7,
+    departureMinutes: 30,
+    vehicle: "Auto" as const,
     driverName: "María García",
   },
   {
     id: "4",
-    route: "Cali - Jamundí",
+    departure: "Cali",
+    destination: "Jamundí",
     rating: 4.2,
     reviewCount: 8,
     departureDay: "Viernes",
-    departureTime: "6:00 pm",
-    vehicleType: "Moto" as const,
+    departureHours: 18,
+    departureMinutes: 0,
+    vehicle: "Moto" as const,
     driverName: "Carlos Rodriguez",
   },
   {
     id: "5",
-    route: "Meléndez - Universidad",
+    departure: "Mélendez",
+    destination: "Univalle",
     rating: 3.8,
     reviewCount: 15,
     departureDay: "Jueves",
-    departureTime: "2:00 pm",
-    vehicleType: "Auto" as const,
+    departureHours: 14,
+    departureMinutes: 0,
+    vehicle: "Auto" as const,
     driverName: "Ana López",
   },
   {
     id: "6",
-    route: "Versalles - Terminal",
+    departure: "Versalles",
+    destination: "Terminal",
     rating: 4.7,
     reviewCount: 22,
     departureDay: "Sábado",
-    departureTime: "11:30 am",
-    vehicleType: "Auto" as const,
+    departureHours: 11,
+    departureMinutes: 30,
+    vehicle: "Auto" as const,
     driverName: "Roberto Silva",
   },
 ];
 
 function Passenger() {
-  const [trips, setTrips] = useState<typeof mockTrips>([]);
+  const [trips, setTrips] = useState<Trip[]>([]);
   const [latitude, setLat] = useState(0);
   const [longitude, setLong] = useState(0);
   const [searchResults, setSearchResults] = useState<typeof mockTrips>([]);
@@ -85,13 +98,15 @@ function Passenger() {
     navigate("/driver");
   };
 
-  const options = {
-    enableHighAccuracy: true,
-    timeout: 5000,
-    maximumAge: 0,
-  };
+
 
   React.useEffect(() => {
+    const options = {
+      enableHighAccuracy: true,
+      timeout: 5000,
+      maximumAge: 0,
+    };
+
     if (navigator.geolocation) {
       navigator.permissions
         .query({ name: "geolocation" })
@@ -109,7 +124,7 @@ function Passenger() {
     }
   }, []);
 
-  function success(pos) {
+  function success(pos: GeolocationPosition) {
     const crd = pos.coords;
     console.log("Your current position is:");
     console.log(`Latitude : ${crd.latitude}`);
@@ -119,7 +134,7 @@ function Passenger() {
     setLong(crd.longitude);
   }
 
-  function errors(err) {
+  function errors(err: GeolocationPositionError) {
     console.warn(`ERROR(${err.code}): ${err.message}`);
   }
 
@@ -140,21 +155,20 @@ function Passenger() {
     const filtered = mockTrips.filter(trip => {
       // Text search filter
       const matchesSearchTerm = !searchTerm.trim() || (
-        trip.route.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        trip.destination.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        trip.departure.toLowerCase().includes(searchTerm.toLowerCase()) ||
         trip.driverName.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        trip.vehicleType.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        trip.departureDay.toLowerCase().includes(searchTerm.toLowerCase()) ||
-        trip.departureTime.toLowerCase().includes(searchTerm.toLowerCase())
+        trip.vehicle.toLowerCase().includes(searchTerm.toLowerCase())
       );
 
       // Vehicle filter
       const matchesVehicle = !filters.vehicle ||
-        trip.vehicleType.toLowerCase() === filters.vehicle.value.toLowerCase();
+        trip.vehicle.toLowerCase() === filters.vehicle.value.toLowerCase();
 
       // Departure time filter (check if trip time contains A.M/P.M)
       const matchesTime = !filters.departureTime ||
-        (filters.departureTime.value === "am" && trip.departureTime.toLowerCase().includes("am")) ||
-        (filters.departureTime.value === "pm" && trip.departureTime.toLowerCase().includes("pm"));
+        (filters.departureTime.value === "am" && trip.departureHours < 12||
+        (filters.departureTime.value === "pm" && trip.departureHours >= 12));
 
       // Trip type filter (this would need to be mapped to trip data - for now we'll assume all trips match)
       const matchesTripType = !filters.tripType; // Since mockTrips don't have trip type field
