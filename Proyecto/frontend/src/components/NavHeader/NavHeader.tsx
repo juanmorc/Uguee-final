@@ -53,10 +53,10 @@ const LogoCircle: React.FC = () => {
 const NavigationLinks: React.FC = () => {
     return (
         <nav className="header-box">
-            <a href="#contact" className="header-link">
+            <a href="https://www.instagram.com/sangre_en_azulejo?igsh=YjR3aG95bXY5eHQ3" className="header-link">
                 Contacto
             </a>
-            <a href="#settings" className="header-link">
+            <a href="https://github.com/juanmorc/Uguee-final/tree/main" className="header-link">
                 Configuración
             </a>
         </nav>

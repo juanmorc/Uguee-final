@@ -29,6 +29,13 @@ export function RegistrationForm() {
         setError("");
         setSuccess("");
 
+        if(rol == "Pasajero"){
+            navigate("/passenger");
+        }
+        if(rol == "Conductor"){
+            navigate("/driver");
+        }
+
         if (!nombre || !apellido || !telefono || !direccion || !contrasena) {
             setError("Por favor, completa todos los campos obligatorios.");
             setIsSubmitting(false);
@@ -54,11 +61,11 @@ export function RegistrationForm() {
 
 
         try {
-            navigate("/passenger");
             const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
             const response = await axios.post(`${apiUrl}/usuarios/usuarios/`, data);
             console.log("Respuesta del servidor:", response.data);
             setSuccess("¡Registro exitoso! Redirigiendo...");
+
         } catch (error) {
             console.error("Error al registrar usuario:", error);
             if (axios.isAxiosError(error)) {
