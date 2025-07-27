@@ -16,6 +16,7 @@ interface RouteFormData {
   vehicle: string;
   hours: string;
   minutes: string;
+  day: string;
   departureCoordinates?: { lat: number; lng: number };
   destinationCoordinates?: { lat: number; lng: number };
 }
@@ -33,6 +34,7 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
     vehicle: "",
     hours: "",
     minutes: "",
+    day: "",
   });
 
   const [isSelectingLocation, setIsSelectingLocation] = useState(false);
@@ -372,7 +374,7 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
 
             {/* Time Field */}
             <div className="form-field">
-              <label className="field-label">Hora de salida:</label>
+              <label className="field-label">Salida:</label>
               <div className="time-container">
                 <input
                   type="text"
@@ -401,6 +403,21 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
                     }
                   }}
                 />
+                <div className="vehicle-container">
+                <select
+                    className="vehicle-select"
+                    value={formData.day}
+                    onChange={(e) => handleInputChange("day", e.target.value)}
+                >
+                  <option value="">Día de viaje</option>
+                  <option value="Lunes">Lunes</option>
+                  <option value="Martes">Martes</option>
+                  <option value="Miércoles">Miercoles</option>
+                  <option value="Jueves">Jueves</option>
+                  <option value="Viernes">Viernes</option>
+                  <option value="Sábado">Sabado</option>
+                </select>
+                </div>
               </div>
             </div>
           </div>

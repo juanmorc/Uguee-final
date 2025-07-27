@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { FormField } from "./FormField";
 import { ColorInput } from "./ColorInput";
 import { Checkbox } from "./Checkbox";
+import {ColorField} from "./ColorField.tsx";
 
 export const RegistrationForm: React.FC = () => {
   const [nombre, setNombre] = useState("");
@@ -36,7 +37,7 @@ export const RegistrationForm: React.FC = () => {
       nombre,
       calle: direccion,
       logo,
-      //colors,
+      colors,
       //acceptedTerms,
     };
 
@@ -120,7 +121,6 @@ export const RegistrationForm: React.FC = () => {
                       fontWeight: 500,
                       display: "flex",
                       alignItems: "center",
-                      fontFamily: "roboto",
                     }}
                 >
                   + Añadir color
@@ -128,19 +128,18 @@ export const RegistrationForm: React.FC = () => {
 
               </div>
 
-              <div className="grid grid-cols-2 gap-x-4 gap-y-4 max-w-md">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-4 w-fit">
                 {colors.map((color, index) => (
                     <div key={index} className="flex items-center gap-2 text-[15px] font-roboto relative">
-                      <ColorInput
-                          label={`Color ${index + 1}`}
-                          value={color}
-                          onChange={(e) => handleColorChange(index, e.target.value)}
+                      <ColorField
+                      color={color}
+                      onChange={(newColor) => handleColorChange(index, newColor)}
                       />
                       {colors.length > 1 && (
                           <button
                               type="button"
                               onClick={() => removeColor(index)}
-                              className="absolute right-2 top-5.5 text-red-500 hover:text-red-700"
+                              className="right-2 top-5.5 text-red-500 hover:text-red-700"
                               style={{
                                 backgroundColor: "transparent",
                                 borderRadius: "50px",

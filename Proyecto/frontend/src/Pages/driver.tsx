@@ -7,9 +7,11 @@ import FloatingActionButton from "../components/FloatingActionButton/FloatingAct
 import { useState } from "react";
 import * as React from "react";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../UserContext";
 import DriverMap from "../components/Map/DriverMap.tsx";
+import type {Trip} from "../types/trip";
 
-// Mock data for demonstration
+
 const mockTrips = [
   {
     id: "1",
@@ -21,26 +23,18 @@ const mockTrips = [
     vehicleType: "Moto" as const,
     driverName: "Liseth Natalia",
   },
-  {
-    id: "2",
-    route: "Palmira - Cali",
-    rating: 3.0,
-    reviewCount: 9,
-    departureDay: "Miércoles",
-    departureTime: "5:00 am",
-    vehicleType: "Auto" as const,
-    driverName: "Juan Moreno",
-  },
+  {}
 ];
 
+
 function Driver() {
-  const [trips, setTrips] = useState([]);
+  const [trips, setTrips] = useState<Trip[]>([]);
   const [latitude, setLat] = useState(0);
   const [longitude, setLong] = useState(0);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isSelectingLocation, setIsSelectingLocation] = useState(false);
   const [locationSelectionMode, setLocationSelectionMode] = useState<'start' | 'destination'>('start');
-
+  const { user } = useUser();
   const navigate = useNavigate();
 
   const handleClickLogo = () => {
@@ -101,7 +95,17 @@ function Driver() {
   const handleSubmitRoute = (formData: any) => {
     // Here you would typically send the data to your backend
     console.log("New route submitted:", formData);
-    // For now, we'll just log it
+    const newTrip = {
+      id: "1",
+      route: formData.departure + " - " + formData.destination,
+      rating: 0,
+      reviewCount: 0,
+      departureDay: formData.day,
+      departureTime: formData.hours + ":" + formData.minutes,
+      vehicleType: formData.vehicle,
+      driverName: user.name + " " + user.lastName,
+    }
+    setTrips([...trips, newTrip]);
   };
 
   const handleLocationSelecting = (isSelecting: boolean, mode?: 'start' | 'destination') => {

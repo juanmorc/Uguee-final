@@ -87,11 +87,11 @@ export function RegistrationForm() {
                     value={modelo}
                     onChange={(e) => setModelo(e.target.value)}
                 />
-                <ColorField
+                <FormField
                     label="Color"
-                    color={color}
+                    placeholder="Rojo"
                     value={color}
-                    onChange={setColor}
+                    onChange={(e) => setColor(e.target.value)}
                 />
                 <FormField
                     label="Categoria"
