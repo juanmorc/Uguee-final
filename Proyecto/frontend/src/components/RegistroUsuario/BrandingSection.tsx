@@ -2,7 +2,7 @@
 
 export function BrandingSection() {
   return (
-    <section className="flex flex-col justify-start items-start p-14 w-[512px] max-md:p-10 pl-17 max-md:w-full max-sm:p-5">
+    <section className="flex flex-col justify-start items-start  h-full p-14 max-md:p-10 pl-17 max-md:w-full max-sm:p-5">
       <header
           className="mb-4 mt-[-10px] text-6xl font-bold text-red-700 leading-[64px] max-md:text-5xl max-md:leading-[56px] max-sm:mb-3 max-sm:text-4xl max-sm:leading-10"
           style={{textShadow: '2px 2px 4px rgba(0, 0, 0, 0.3)' }}

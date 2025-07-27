@@ -1,6 +1,6 @@
 //import React from "react";
-import { BrandingSection } from "./BrandingSection";
-import { RegistrationForm } from "./RegistrationForm";
+import { BrandingSection } from "../components/RegistroInstitucion/BrandingSection.tsx";
+import { RegistrationForm } from "../components/RegistroInstitucion/RegistrationForm.tsx";
 
 function RegistroInstituciones() {
   return (

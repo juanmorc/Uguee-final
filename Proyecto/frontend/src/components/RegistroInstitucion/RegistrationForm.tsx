@@ -65,7 +65,7 @@ export const RegistrationForm: React.FC = () => {
   };
 
   return (
-      <section className="w-6/10 pl-50 p-10 justify-center items-center max-md:pl-5 max-md:pr-5 max-md:w-full">
+      <section className="w-full pl-50 p-10 justify-center items-center max-md:pl-5 max-md:pr-5 max-md:w-full">
         <div className="flex flex-col my-auto text-xl">
           <header className="text-center mb-5 max-w-md mx-auto">
             <h2

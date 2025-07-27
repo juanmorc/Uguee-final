@@ -30,7 +30,7 @@ export const ActionButtons: React.FC = () => {
     const [hoverSecond, setHoverSecond] = React.useState(false);
 
     return (
-        <div className="w-full flex justify-center items-center gap-8 mt-6 max-sm:flex-col max-sm:gap-4 max-sm:mt-5">
+        <div className="w-full flex flex-row justify-center items-center gap-8 mt-6 max-sm:flex-col max-sm:gap-4 max-sm:mt-5">
             <button
                 style={{
                     ...baseStyle,

@@ -1,0 +1,63 @@
+@import "tailwindcss";
+
+.floating-action-button {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  background: #602cad;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 4px 12px rgba(96, 44, 173, 0.4);
+  transition: all 0.3s ease;
+  z-index: 999;
+}
+
+.floating-action-button:hover {
+  background: #7a3cbf;
+  box-shadow: 0 6px 16px rgba(96, 44, 173, 0.6);
+  transform: translateY(-2px);
+}
+
+.floating-action-button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(96, 44, 173, 0.4);
+}
+
+.floating-action-button svg {
+  width: 24px;
+  height: 24px;
+}
+
+
+@keyframes pulse-confirm {
+  0% {
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  }
+  50% {
+    box-shadow: 0 6px 20px rgba(76, 175, 80, 0.8);
+  }
+  100% {
+    box-shadow: 0 4px 12px rgba(76, 175, 80, 0.4);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .floating-action-button {
+    bottom: 20px;
+    right: 20px;
+    width: 48px;
+    height: 48px;
+  }
+
+  .floating-action-button svg {
+    width: 20px;
+    height: 20px;
+  }
+}
