@@ -125,7 +125,7 @@ export function RegistrationForm() {
                     label="Correo institucional "
                     type="email"
                     placeholder="estudiante@institucion.edu.co"
-                    optional={true}
+                    optional={false}
                     value={correo}
                     onChange={(e) => setCorreo(e.target.value)}
                 />

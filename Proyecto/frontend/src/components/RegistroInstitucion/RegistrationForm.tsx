@@ -189,29 +189,7 @@ export const RegistrationForm: React.FC = () => {
                   onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = "#1A0023"}}
               >
-                Registrarme
-              </button>
-              <button
-                  type="button"
-                  style={{
-                    backgroundColor: "transparent",
-                    color: "#1A0023",
-                    padding: "12px 10px",
-                    borderRadius: "8px",
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    border: "2px solid #1A0023",
-                    minWidth: "150px",
-                    transition: "all 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#B19CD7";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                  }}
-              >
-                Ya tengo cuenta
+                Registrar
               </button>
             </div>
           </form>
