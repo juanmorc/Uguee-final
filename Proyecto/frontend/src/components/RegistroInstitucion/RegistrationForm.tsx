@@ -44,7 +44,6 @@ export const RegistrationForm: React.FC = () => {
 
     console.log("Datos enviados:", data);
     try {
-        navigate("/passenger")
       const response = await fetch("http://localhost:8000/instituciones/instituciones/", {
         method: "POST",
         headers: {
@@ -60,6 +59,7 @@ export const RegistrationForm: React.FC = () => {
         const result = await response.json();
         console.log("Respuesta del servidor:", result);
         alert("Institución registrada exitosamente.");
+        navigate("/passenger");
       }
     } catch (error) {
       console.error("Error de red:", error);
