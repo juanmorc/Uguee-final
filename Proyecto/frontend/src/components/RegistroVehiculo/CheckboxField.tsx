@@ -13,7 +13,9 @@ export const CheckboxField: React.FC<CheckboxFieldProps> = ({
                                                                 label = (
                                                                     <>
                                                                         Acepto los{" "}
-                                                                        <span className="underline font-medium">términos y condiciones</span> del servicio
+                                                                        <a href="https://docs.google.com/document/d/19LGX6SUW1j8t-hQjKCmhL5-PN0g12Mg68sVJXEOAmzo/edit?usp=sharing">
+                                                                            <span className="underline font-medium">términos y condiciones</span>
+                                                                        </a> del servicio
                                                                     </>
                                                                 ),
                                                                 className = "",
