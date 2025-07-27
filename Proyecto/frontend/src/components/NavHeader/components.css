@@ -24,3 +24,7 @@
 .header-link {
     @apply relative flex items-center bg-gray-200 gap-4 p-4 text-xl tracking-tight leading-9 rounded-lg h-10 text-stone-900 hover:bg-gray-400 transition-colors max-md:p-3 max-md:h-10 max-md:text-2xl max-md:leading-8;
 }
+
+.menu-header-text{
+    @apply text-xl w-fit max-md:p-3 max-md:h-10 max-md:text-2xl max-md:leading-8;
+}

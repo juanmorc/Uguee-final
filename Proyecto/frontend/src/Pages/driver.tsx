@@ -137,6 +137,7 @@ function Driver() {
         title={"Modo Conductor"}
         icon={<CarIcon />}
         handleClick={handleClickLogo}
+        driver={true}
       />
       <div className="flex-1 flex-col w-full h-full justify-center justify-items-center relative">
         <SearchBarWithFilters />

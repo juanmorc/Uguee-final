@@ -5,6 +5,7 @@ import { SelectField } from "./SelectField";
 import { CheckboxField } from "./CheckboxField";
 import { ActionButtons } from "./ActionButtons";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../UserContext";
 import axios from "axios";
 
 export function RegistrationForm() {
@@ -21,6 +22,7 @@ export function RegistrationForm() {
     const [success, setSuccess] = useState("");
     const [acceptedTerms, setAcceptedTerms] = useState(false);
     const navigate = useNavigate();
+    const { setUser } = useUser();
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -61,6 +63,7 @@ export function RegistrationForm() {
 
 
         try {
+            setUser({name: data.nombre, lastName: data.apellido})
             const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
             const response = await axios.post(`${apiUrl}/usuarios/usuarios/`, data);
             console.log("Respuesta del servidor:", response.data);

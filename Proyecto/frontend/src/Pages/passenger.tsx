@@ -191,6 +191,7 @@ function Passenger() {
         title={"Modo Pasajero"}
         icon={<HelmetIcon />}
         handleClick={handleClickLogo}
+        driver={false}
       />
       <div className="flex-1 flex-col w-full h-full justify-center justify-items-center relative">
         <SearchBarWithFilters
