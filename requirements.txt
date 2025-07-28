@@ -1,9 +1,42 @@
-# Dependencias del backend
-Django>=5.2.3
-djangorestframework>=3.14.0
-django-cors-headers
-python-decouple
-gunicorn>=21.0.0
-whitenoise>=6.0.0  # Para servir archivos estáticos
-psycopg2-binary>=2.9.0  # Para PostgreSQL en producción
-supabase>=1.0.0
+# Django Core
+Django==5.0.6
+djangorestframework==3.15.2
+
+# Django Extensions
+django-cors-headers==4.3.1
+djangorestframework-simplejwt==5.3.0
+
+# Database
+psycopg2-binary==2.9.9
+
+# Supabase Integration
+supabase==2.3.4
+postgrest==0.16.2
+
+# Environment Configuration
+python-decouple==3.8
+python-dotenv==1.0.1
+
+# File Handling
+Pillow==10.4.0
+
+# HTTP Requests
+requests==2.32.3
+
+# Utilities
+six==1.16.0
+
+# Development & Debugging (optional)
+django-debug-toolbar==4.4.6
+
+# Security
+cryptography==42.0.5
+
+# Date/Time utilities
+python-dateutil==2.9.0
+
+# Additional utilities that might be needed
+certifi==2024.7.4
+charset-normalizer==3.3.2
+idna==3.7
+urllib3==2.2.2

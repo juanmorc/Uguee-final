@@ -11,13 +11,25 @@ export function RegistrationForm() {
     const [modelo, setModelo] = useState("");
     const [color, setColor] = useState("");
     const [categoria, setCategoria] = useState("");
-    const [tecno, setTecno] = useState("");
+    const [tipo, setTipo] = useState("");
+    const [tecnomecanica, settecnomecanica] = useState("");
     const [soat, setSoat] = useState("");
     const [marca, setMarca] = useState("");
     const [isSubmitting, setIsSubmitting] = useState(false);
     const [error, setError] = useState("");
     const [success, setSuccess] = useState("");
     const navigate = useNavigate();
+
+    const formatDateForBackend = (dateString: string): string => {
+        if (!dateString) return "";
+        
+        const parts = dateString.split('/');
+        if (parts.length === 3) {
+            const [day, month, year] = parts;
+            return `${year}-${month.padStart(2, '0')}-${day.padStart(2, '0')}`;
+        }
+        return dateString;
+    };
 
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
@@ -26,35 +38,64 @@ export function RegistrationForm() {
         setError("");
         setSuccess("");
 
-        navigate("/driver");
-
-        if (!placa || !modelo || !color || !tecno || !soat  || !marca) {
+        if (!placa || !modelo || !color || !tecnomecanica || !soat || !marca) {
             setError("Por favor, completa todos los campos obligatorios.");
             setIsSubmitting(false);
             return;
         }
 
+        const userId = localStorage.getItem('userId') || '1';
+
+        if (!userId || userId === 'null' || userId === 'undefined') {
+            setError("No se encontró información del usuario. Por favor inicia sesión.");
+            setIsSubmitting(false);
+            return;
+        }
+
         const data = {
-            placa,
+            placa: placa.toUpperCase(),
             modelo,
             color,
-            categoria,
-            tecno,
-            soat,
+            categoria: categoria || 'Local',
+            tecnomecanica: formatDateForBackend(tecnomecanica),
+            soat: formatDateForBackend(soat),
             marca,
+            tipo,
+            uid: parseInt(userId),
         };
 
+        console.log("=== DATOS A ENVIAR ===");
+        console.log("Data completa:", data);
+        console.log("UserID:", userId);
+        console.log("UserID parseado:", parseInt(userId));
 
         try {
             const apiUrl = import.meta.env.VITE_API_URL || 'http://localhost:8000';
-            const response = await axios.post(`${apiUrl}/usuarios/usuarios/`, data);
+            console.log("URL de API:", `${apiUrl}/vehiculos/vehiculos/`);
+            
+            const response = await axios.post(`${apiUrl}/vehiculos/vehiculos/`, data);
             console.log("Respuesta del servidor:", response.data);
             setSuccess("¡Registro exitoso! Redirigiendo...");
 
+            setTimeout(() => {
+                navigate("/driver");
+            }, 2000);
+
         } catch (error) {
-            console.error("Error al registrar el vehiculo:", error);
+            console.error("=== ERROR COMPLETO ===");
+            console.error("Error:", error);
+            
             if (axios.isAxiosError(error)) {
-                setError(error.response?.data?.message || "Error al registrar. Por favor intenta nuevamente.");
+                console.error("Status:", error.response?.status);
+                console.error("Data:", error.response?.data);
+                console.error("Headers:", error.response?.headers);
+                
+                const errorMessage = error.response?.data?.message || 
+                                   error.response?.data?.detail ||
+                                   error.response?.data?.error ||
+                                   JSON.stringify(error.response?.data) ||
+                                   "Error al registrar. Por favor intenta nuevamente.";
+                setError(`Error ${error.response?.status}: ${errorMessage}`);
             } else {
                 setError("Error desconocido al registrar vehículo");
             }
@@ -96,11 +137,17 @@ export function RegistrationForm() {
                     value={categoria}
                     onChange={(e) => setCategoria(e.target.value)}
                 />
+                <FormField
+                    label="Tipo"
+                    placeholder="Sedan"
+                    value={tipo}
+                    onChange={(e) => setTipo(e.target.value)}
+                />
                 <DateField
                     label="Tecnicomecánica"
                     placeholder="DD/MM/AAAA"
-                    value={tecno}
-                    onChange={(value: string) => setTecno(value)}
+                    value={tecnomecanica}
+                    onChange={(value: string) => settecnomecanica(value)}
                     />
                 <DateField
                     label="SOAT"
@@ -118,9 +165,8 @@ export function RegistrationForm() {
 
                 {error && <p className="text-red-500 text-sm mt-2 text-center">{error}</p>}
                 {success && <p className="text-green-600 text-sm mt-2 text-center">{success}</p>}
-                {isSubmitting && <p className="text-blue-500 text-sm mt-2 text-center">Registrando usuario...</p>}
+                {isSubmitting && <p className="text-blue-500 text-sm mt-2 text-center">Registrando vehiculo...</p>}
             </form>
         </section>
     );
 }
-

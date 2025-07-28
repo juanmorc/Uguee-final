@@ -24,7 +24,7 @@ class Usuario(models.Model):
     apellido = models.CharField(max_length=150)
     calle = models.CharField(max_length=100)
     numero = models.CharField(max_length=50)
-    celular = models.IntegerField()
+    celular = models.CharField(max_length=15)
     contraseña = models.CharField(max_length=50)
     correo = models.CharField(max_length=50)
     codigo = models.CharField(max_length=50)
