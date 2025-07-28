@@ -2,7 +2,7 @@ import React from "react";
 
 export const BrandingSection: React.FC = () => {
   return (
-    <section className="w-8/12 max-md:w-full bg-[#1A0023] flex flex-col items-center justify-center text-white py-16 px-4">
+    <section className="w-full max-md:w-full bg-[#1A0023] flex flex-col items-center justify-center text-white py-16 px-4">
       <div className="flex flex-col items-center text-center space-y-4">
         <h1
             className="text-5xl font-bold mt-0">Ugüee

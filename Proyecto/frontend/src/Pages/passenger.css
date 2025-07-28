@@ -1,0 +1,12 @@
+@import "tailwindcss";
+@import "../components/NavHeader/components.css";
+@import "../components/SearchBar/searchbar.css";
+
+html,
+body,
+#root {
+    height: 100%;
+    width: 100%;
+}
+
+

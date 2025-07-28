@@ -1,0 +1,30 @@
+@import "tailwindcss";
+
+.nav-header {
+    @apply flex relative bg-white gap-10 flex-wrap shrink-0 justify-between justify-items-stretch content-center items-center px-4 py-4 shadow-sm h-max w-full mx-auto max-md:flex-wrap max-md:px-4 max-md:py-6 max-md:w-full max-md:h-auto max-sm:flex-col max-sm:gap-4 max-sm:px-3 max-sm:py-4;
+}
+
+
+.logo-section{
+    @apply inline-flex bg-purple-100 relative shrink-0 rounded-[40px] gap-5 items-center-safe pr-5 h-max w-max max-md:gap-3 max-md:h-[60px] max-md:w-[360px] max-sm:gap-2.5 max-sm:justify-center max-sm:w-full max-sm:h-[50px] hover:bg-purple-200;
+}
+
+.header-text{
+    @apply relative shrink-0 text-2xl tracking-normal text-center text-violet-500 h-[57px] leading-[52px] w-auto max-md:w-60 max-md:text-4xl max-md:leading-10 max-md:h-[45px] max-sm:text-3xl max-sm:leading-8 max-sm:h-[35px] max-sm:w-[200px];
+}
+
+.logo-text {
+    @apply relative -bottom-0  text-4xl tracking-tight text-center text-purple-600 bg-purple-200 aspect-[1/1] h-[70px] max-h-3/5 leading-[65px] left-[-0px]  rounded-[50px] w-[70px] max-md:-bottom-1 max-md:-left-2 max-md:text-5xl max-md:leading-10 max-md:h-[60px] max-md:right-[3px] max-md:w-[60px] max-sm:right-0.5 max-sm:-left-1.5 max-sm:text-3xl max-sm:leading-10 max-sm:bottom-[-3px] max-sm:h-[50px] max-sm:w-[50px];
+}
+
+.header-box {
+    @apply flex relative flex-wrap shrink-0 gap-2 justify-end content-center items-center grow max-md:gap-3 max-md:justify-center max-md:w-full max-sm:hidden;
+}
+
+.header-link {
+    @apply relative flex items-center bg-gray-200 gap-4 p-4 text-xl tracking-tight leading-9 rounded-lg h-10 text-stone-900 hover:bg-gray-400 transition-colors max-md:p-3 max-md:h-10 max-md:text-2xl max-md:leading-8;
+}
+
+.menu-header-text{
+    @apply text-xl w-fit max-md:p-3 max-md:h-10 max-md:text-2xl max-md:leading-8;
+}
