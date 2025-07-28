@@ -379,8 +379,11 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
                   value={formData.departureHours}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "");
-                    if (parseInt(value) <= 23 || value === "") {
+                    if (parseInt(value) <= 23) {
                       handleInputChange("departureHours", parseInt(value));
+                    }
+                    if (value === "") {
+                      handleInputChange("departureHours", "HH");
                     }
                   }}
                 />
@@ -393,8 +396,11 @@ const AddRouteModal: React.FC<AddRouteModalProps> = ({
                   value={formData.departureMinutes}
                   onChange={(e) => {
                     const value = e.target.value.replace(/\D/g, "");
-                    if (parseInt(value) <= 59 || value === "") {
+                    if (parseInt(value) <= 59) {
                       handleInputChange("departureMinutes", parseInt(value));
+                    }
+                    if (value === "") {
+                      handleInputChange("departureMinutes", "MM");
                     }
                   }}
                 />

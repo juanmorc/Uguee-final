@@ -14,7 +14,7 @@ export function RegistrationForm() {
     const [idEstudiantil, setIdEstudiantil] = useState("");
     const [telefono, setTelefono] = useState("");
     const [calle, setCalle] = useState("");
-    const [numero, setNumero] = useState("");
+    const [direccion, setDireccion] = useState("");
     const [correo, setCorreo] = useState("");
     const [contrasena, setContrasena] = useState("");
     const [rol, setRol] = useState("Pasajero"); // Valor por defecto
@@ -32,7 +32,8 @@ export function RegistrationForm() {
         setError("");
         setSuccess("");
 
-        if (!nombre || !apellido || !telefono || !calle || !contrasena) {
+
+        if (!nombre || !apellido || !telefono || !direccion || !contrasena) {
             setError("Por favor, completa todos los campos obligatorios.");
             setIsSubmitting(false);
             return;
@@ -131,7 +132,7 @@ export function RegistrationForm() {
                     label="Correo institucional "
                     type="email"
                     placeholder="estudiante@institucion.edu.co"
-                    optional={true}
+                    optional={false}
                     value={correo}
                     onChange={(e) => setCorreo(e.target.value)}
                 />

@@ -4,8 +4,8 @@ import { RegistrationForm } from "../components/RegistroVehiculo/RegistrationFor
 
 function VehicleRegistrationPage() {
   return (
-    <main className="flex flex-col w-full h-full max-md:flex-col">
-        <div className="bg-white flex grow gap-5 flex-row">
+    <main className="flex flex-col w-max h-max max-md:flex-col">
+        <div className="bg-white w-full h-full flex grow gap-5 flex-row">
       <BrandingSection />
       <RegistrationForm />
         </div>
