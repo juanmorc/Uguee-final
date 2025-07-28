@@ -27,7 +27,6 @@ export const ActionButtons: React.FC = () => {
     };
 
     const [hoverFirst, setHoverFirst] = React.useState(false);
-    const [hoverSecond, setHoverSecond] = React.useState(false);
 
     return (
         <div className="w-full flex flex-row justify-center items-center gap-8 mt-6 max-sm:flex-col max-sm:gap-4 max-sm:mt-5">
@@ -39,18 +38,7 @@ export const ActionButtons: React.FC = () => {
                 onMouseEnter={() => setHoverFirst(true)}
                 onMouseLeave={() => setHoverFirst(false)}
             >
-                Registrarme
-            </button>
-
-            <button
-                style={{
-                    ...baseStyle,
-                    ...(hoverSecond ? hoverStyle : {}),
-                }}
-                onMouseEnter={() => setHoverSecond(true)}
-                onMouseLeave={() => setHoverSecond(false)}
-            >
-                Ya tengo cuenta
+                Registrar
             </button>
         </div>
     );

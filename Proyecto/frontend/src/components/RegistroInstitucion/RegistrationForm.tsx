@@ -1,10 +1,12 @@
 "use client";
 import React, { useState } from "react";
 import { FormField } from "./FormField";
-import { ColorInput } from "./ColorInput";
 import { Checkbox } from "./Checkbox";
+import {ColorField} from "./ColorField.tsx";
+import {useNavigate} from "react-router-dom";
 
 export const RegistrationForm: React.FC = () => {
+  const navigate = useNavigate();
   const [nombre, setNombre] = useState("");
   const [id, setId] = useState("");
   const [direccion, setDireccion] = useState("");
@@ -36,7 +38,7 @@ export const RegistrationForm: React.FC = () => {
       nombre,
       calle: direccion,
       logo,
-      //colors,
+      colors,
       //acceptedTerms,
     };
 
@@ -57,6 +59,7 @@ export const RegistrationForm: React.FC = () => {
         const result = await response.json();
         console.log("Respuesta del servidor:", result);
         alert("Institución registrada exitosamente.");
+        navigate("/passenger");
       }
     } catch (error) {
       console.error("Error de red:", error);
@@ -65,7 +68,7 @@ export const RegistrationForm: React.FC = () => {
   };
 
   return (
-      <section className="w-6/10 pl-50 p-10 justify-center items-center max-md:pl-5 max-md:pr-5 max-md:w-full">
+      <section className="w-full pl-50 p-10 justify-center items-center max-md:pl-5 max-md:pr-5 max-md:w-full">
         <div className="flex flex-col my-auto text-xl">
           <header className="text-center mb-5 max-w-md mx-auto">
             <h2
@@ -120,7 +123,6 @@ export const RegistrationForm: React.FC = () => {
                       fontWeight: 500,
                       display: "flex",
                       alignItems: "center",
-                      fontFamily: "roboto",
                     }}
                 >
                   + Añadir color
@@ -128,19 +130,18 @@ export const RegistrationForm: React.FC = () => {
 
               </div>
 
-              <div className="grid grid-cols-2 gap-x-4 gap-y-4 max-w-md">
+              <div className="grid grid-cols-2 gap-x-4 gap-y-4 w-fit">
                 {colors.map((color, index) => (
                     <div key={index} className="flex items-center gap-2 text-[15px] font-roboto relative">
-                      <ColorInput
-                          label={`Color ${index + 1}`}
-                          value={color}
-                          onChange={(e) => handleColorChange(index, e.target.value)}
+                      <ColorField
+                      color={color}
+                      onChange={(newColor) => handleColorChange(index, newColor)}
                       />
                       {colors.length > 1 && (
                           <button
                               type="button"
                               onClick={() => removeColor(index)}
-                              className="absolute right-2 top-5.5 text-red-500 hover:text-red-700"
+                              className="right-2 top-5.5 text-red-500 hover:text-red-700"
                               style={{
                                 backgroundColor: "transparent",
                                 borderRadius: "50px",
@@ -160,13 +161,12 @@ export const RegistrationForm: React.FC = () => {
                 checked={acceptedTerms}
                 onChange={setAcceptedTerms}
                 label={
-                  <>
-                    Acepto los{" "}
-                    <span className="underline font-medium">
-                  términos y condiciones
-                </span>{" "}
-                    del servicio
-                  </>
+                    <>
+                        Acepto los{" "}
+                        <a href="https://docs.google.com/document/d/19LGX6SUW1j8t-hQjKCmhL5-PN0g12Mg68sVJXEOAmzo/edit?usp=sharing">
+                            <span className="underline font-medium">términos y condiciones</span>
+                        </a> del servicio
+                    </>
                 }
             />
 
@@ -189,29 +189,7 @@ export const RegistrationForm: React.FC = () => {
                   onMouseLeave={(e) => {
                       e.currentTarget.style.backgroundColor = "#1A0023"}}
               >
-                Registrarme
-              </button>
-              <button
-                  type="button"
-                  style={{
-                    backgroundColor: "transparent",
-                    color: "#1A0023",
-                    padding: "12px 10px",
-                    borderRadius: "8px",
-                    fontSize: "16px",
-                    fontWeight: "bold",
-                    border: "2px solid #1A0023",
-                    minWidth: "150px",
-                    transition: "all 0.3s ease",
-                  }}
-                  onMouseEnter={(e) => {
-                    e.currentTarget.style.backgroundColor = "#B19CD7";
-                  }}
-                  onMouseLeave={(e) => {
-                    e.currentTarget.style.backgroundColor = "transparent";
-                  }}
-              >
-                Ya tengo cuenta
+                Registrar
               </button>
             </div>
           </form>
